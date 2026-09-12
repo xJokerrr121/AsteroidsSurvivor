@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--
+      CSP enforced in production. GitHub Pages cannot set response headers, so the
+      policy ships in the document; CI asserts the matching header on deploy.
+      Mirrors the endpoint allowlist in src/telemetry/beacon.ts.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.plausible.io https://*.umami.is"
+    />
+    <title>Asteroids Survivor</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <main id="game-root" aria-label="Asteroids Survivor play field"></main>
+
+    <p id="hint">Move with the arrow keys or WASD. Your guns fire themselves.</p>
+
+    <div id="game-over" role="dialog" aria-labelledby="game-over-title" hidden>
+      <h1 id="game-over-title">Run over</h1>
+      <p id="game-over-summary"></p>
+      <p id="game-over-best"></p>
+      <button id="continue-button" type="button">Continue</button>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

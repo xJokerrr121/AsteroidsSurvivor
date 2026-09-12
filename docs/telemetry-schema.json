@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xjokerrr121.github.io/AsteroidsSurvivor/telemetry-schema.json",
+  "title": "Asteroids Survivor telemetry event",
+  "description": "Frozen 2026-09-11. Every client event sent via navigator.sendBeacon() to VITE_TELEMETRY_ENDPOINT MUST validate against this schema. No changes after 2026-09-11 without a new plan.",
+  "x-frozen-on": "2026-09-11",
+  "x-transport": "navigator.sendBeacon()",
+  "x-endpoint-env": "VITE_TELEMETRY_ENDPOINT",
+  "x-retention-targets": {
+    "day_1": 0.35,
+    "day_7": 0.12
+  },
+  "type": "object",
+  "required": ["session_id", "event_name", "timestamp", "properties"],
+  "additionalProperties": false,
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "Opaque per-tab random id (UUID v4). Not a user id, not persisted across runs.",
+      "format": "uuid"
+    },
+    "event_name": {
+      "type": "string",
+      "description": "Closed set for the MVP increment.",
+      "enum": ["session_start", "death", "continue_click"]
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "Client clock, ISO 8601 with timezone (Date#toISOString).",
+      "format": "date-time"
+    },
+    "properties": {
+      "type": "object",
+      "description": "Event-scoped numeric/boolean/string facts only. No free text, no user-supplied content, no identifiers.",
+      "additionalProperties": {
+        "type": ["string", "number", "boolean"]
+      },
+      "properties": {
+        "survived_ms": {
+          "type": "number",
+          "description": "death: milliseconds survived on the run that just ended."
+        },
+        "high_score_ms": {
+          "type": "number",
+          "description": "death / continue_click: best survived_ms stored in IndexedDB."
+        },
+        "returning": {
+          "type": "boolean",
+          "description": "session_start: true when IndexedDB already holds a previous run."
+        }
+      }
+    }
+  }
+}
