@@ -28,3 +28,11 @@ Checkable overflow from council rooms. Tick here; do not copy into a meeting's N
 - [ ] define first-playable UX scope (states, flows, copy) -- owner: ux -- from: [[2026-09-11-plan-first-increment-ordered]] -- why: not in current step list, blocks validation with named group
 - [ ] Recruit 5 named test players -- owner: Product Manager -- from: [[2026-09-11-plan-first-increment-ordered]] -- why: Step 5 cannot start without them.
 - [ ] Define named test group + pass/fail criteria -- owner: @ux -- from: [[2026-09-11-plan-first-increment-ordered]] -- why: step 2 deliverable, not step 3 discovery
+- [ ] Scaffold telemetry beacon client -- owner: Technical Engineering Manager -- from: [[2026-09-15-todo-integrations]] -- why: gate 3, client-side schema locked
+- [ ] Define done signals for repo+CI and persistence+beacon -- owner: Data Analyst -- from: [[2026-09-15-todo-integrations]] -- why: cannot verify scaffold gate without them.
+- [ ] Define acceptance criteria for each gate -- owner: QA Engineer -- from: [[2026-09-15-todo-integrations]] -- why: not this increment until TEM names gate 3 and we agree on signals.
+- [ ] Define third gate with owner and acceptance criteria -- owner: TEM -- from: [[2026-09-15-todo-integrations]] -- why: scaffold blocked until all three gates have done signals.
+- [ ] Implement Gate 3 playable core loop -- owner: Lead Engineer -- from: [[2026-09-15-todo-integrations]] -- why: not this increment (depends on Gates 1+2 green)
+- [ ] Add lint/typecheck/test gates to CI pipeline -- owner: Lead Engineer -- from: [[2026-09-15-todo-integrations]] -- why: not this increment, but required before team scales.
+- [ ] Write UX acceptance criteria for gate three -- owner: UX/UI Designer -- from: [[2026-09-15-todo-integrations]] -- why: scaffold tomorrow depends on testable "playable" definition
+- [ ] Add lint/typecheck/test gates to CI pipeline after scaffold -- owner: DevOps Engineer -- from: [[2026-09-15-todo-integrations]] -- why: not this increment.

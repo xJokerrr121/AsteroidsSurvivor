@@ -7,7 +7,7 @@ tags:
 - moc
 title: Index
 type: index
-updated: '2026-09-11T18:49:20.326310'
+updated: '2026-09-15T17:27:30.106632'
 ---
 
 # Index
@@ -33,21 +33,25 @@ updated: '2026-09-11T18:49:20.326310'
 ## Findings
 
 - [[2026-09-11-name-runtime]] — Grill interview on Name the runtime (7 settled decisions).
+- [[2026-09-15-define-term-noun-phrase]] — Grill interview on Define: term (noun phrase, max 8 words) or none (1 settled decisions).
 
 ## Meetings
 
 - [[2026-09-10-classic-asteroids-arcade]] — Meeting note on Classic Asteroids arcade game, with vampire survivor mechanics.
 - [[2026-09-11-plan-first-increment-ordered]] — Meeting note on Plan the first increment — ordered.
 - [[2026-09-11-refine-plan-first-increment]] — Meeting note on Refine: Plan the first increment — ordered.
+- [[2026-09-15-todo-integrations]] — Meeting note on todo integrations.
 
 ## Minutes
 
 - [[2026-09-11-plan-first-increment-ordered-minutes]] — Minutes for Plan the first increment — ordered.
 - [[2026-09-11-refine-plan-first-increment-minutes]] — Minutes for Refine: Plan the first increment — ordered.
+- [[2026-09-15-todo-integrations-minutes]] — Minutes for todo integrations.
 
 ## Interviews
 
 - [[2026-09-11-name-runtime-interview]] — Operator interview session on Name the runtime.
+- [[2026-09-15-define-term-noun-phrase-interview]] — Operator interview session on Define: term (noun phrase, max 8 words) or none.
 
 ## Research
 
@@ -55,6 +59,7 @@ updated: '2026-09-11T18:49:20.326310'
 
 ## Roadmaps
 
+- [[66c0c184-roadmap]] — Strategic implementation roadmap for todo integrations.
 - [[dcd07828-roadmap]] — Strategic implementation roadmap for Plan the first increment — ordered.
 - [[f9bddde9-roadmap]] — Strategic implementation roadmap for Refine: Plan the first increment — ordered.
 - [[todos]] — Named overflow parked from council rooms. Tick here; do not copy into a meeting's Next actions.
@@ -66,7 +71,9 @@ updated: '2026-09-11T18:49:20.326310'
 ## Plans
 
 - [[2026-09-11-execution-spec-plan-first]] — Execution Spec — Plan the first increment — ordered
+- [[2026-09-11-unblock-execute-locked-12]] — Unblock and execute the locked 12-day first increment for Asteroids Survivor. Three hard prerequisites (telemetry schema
 - [[2026-09-11-unblock-scaffold-start-step]] — Unblock scaffold start (Step 1) by completing the three hard prerequisites today (2026-09-11): freeze telemetry schema &
+- [[2026-09-15-todo-integrations-execution]] — todo integrations — Execution Spec
 
 ## Prompts
 
@@ -87,6 +94,10 @@ updated: '2026-09-11T18:49:20.326310'
 ## Locks
 
 - _No locks yet_
+
+## Memory
+
+- [[Memory]] — Working facts sitting attendees currently hold.
 
 ## Project
 
