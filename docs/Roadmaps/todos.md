@@ -20,7 +20,7 @@ type: roadmap
 Checkable overflow from council rooms. Tick here; do not copy into a meeting's Next actions.
 
 ## Next actions
-- [ ] Validate core loop with named test group -- owner: @ux -- from: [[2026-09-11-plan-first-increment-ordered]] -- why: not this increment
+- [x] Validate core loop with named test group -- owner: @ux -- from: [[2026-09-11-plan-first-increment-ordered]] -- why: not this increment
 - [ ] Validate stack ADR is recorded -- owner: @lead -- from: [[2026-09-11-plan-first-increment-ordered]] -- why: not this increment if unsettled.
 - [ ] Validate the loop with the named test group -- owner: @ux -- from: [[2026-09-11-plan-first-increment-ordered]] -- why: not this increment, but the only signal that matters for the next one.
 - [ ] Threat-model client beacon -- owner: @security -- from: [[2026-09-11-plan-first-increment-ordered]] -- why: not this increment

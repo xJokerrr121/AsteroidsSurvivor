@@ -7,7 +7,7 @@ tags:
 - moc
 title: Index
 type: index
-updated: '2026-09-11T17:19:09.448419'
+updated: '2026-09-11T18:49:20.326310'
 ---
 
 # Index
@@ -38,10 +38,12 @@ updated: '2026-09-11T17:19:09.448419'
 
 - [[2026-09-10-classic-asteroids-arcade]] — Meeting note on Classic Asteroids arcade game, with vampire survivor mechanics.
 - [[2026-09-11-plan-first-increment-ordered]] — Meeting note on Plan the first increment — ordered.
+- [[2026-09-11-refine-plan-first-increment]] — Meeting note on Refine: Plan the first increment — ordered.
 
 ## Minutes
 
 - [[2026-09-11-plan-first-increment-ordered-minutes]] — Minutes for Plan the first increment — ordered.
+- [[2026-09-11-refine-plan-first-increment-minutes]] — Minutes for Refine: Plan the first increment — ordered.
 
 ## Interviews
 
@@ -54,6 +56,7 @@ updated: '2026-09-11T17:19:09.448419'
 ## Roadmaps
 
 - [[dcd07828-roadmap]] — Strategic implementation roadmap for Plan the first increment — ordered.
+- [[f9bddde9-roadmap]] — Strategic implementation roadmap for Refine: Plan the first increment — ordered.
 - [[todos]] — Named overflow parked from council rooms. Tick here; do not copy into a meeting's Next actions.
 
 ## ADRs
@@ -63,6 +66,7 @@ updated: '2026-09-11T17:19:09.448419'
 ## Plans
 
 - [[2026-09-11-execution-spec-plan-first]] — Execution Spec — Plan the first increment — ordered
+- [[2026-09-11-unblock-scaffold-start-step]] — Unblock scaffold start (Step 1) by completing the three hard prerequisites today (2026-09-11): freeze telemetry schema &
 
 ## Prompts
 

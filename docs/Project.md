@@ -7,7 +7,7 @@ tags:
 - asteroids-survivor
 title: Asteroids Survivor
 type: project
-updated: '2026-09-11T17:19:09.356498'
+updated: '2026-09-11T18:49:20.239808'
 ---
 
 # Asteroids Survivor
@@ -17,8 +17,8 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 ## Profile
 
 - **Industry:** browser-based arcade game
-- **Stage:** prototype
-- **Constraints:** cheap budget, static hosting, no backend, CI with lint/typecheck/audit/CSP, telemetry schema frozen today, security
+- **Stage:** planned
+- **Constraints:** Three hard gates block scaffold tomorrow (owner: Technical Engineering Manager)
 - **Priorities:** fast iteration, minimal infra, Day-1 ≥35% Day-7 ≥12% retention, measurable first increment
 - **Culture:** pragmatic, security-conscious, data-driven, execution-focused
 
@@ -47,12 +47,14 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 
 ## Meetings
 
+- [[2026-09-11-refine-plan-first-increment]] - Meeting note on Refine: Plan the first increment — ordered.
 - [[2026-09-11-plan-first-increment-ordered]] - Meeting note on Plan the first increment — ordered.
 - [[2026-09-11-name-runtime]] - Meeting note on Name the runtime.
 - [[2026-09-10-classic-asteroids-arcade]] - Meeting note on Classic Asteroids arcade game, with vampire survivor mechanics.
 
 ## Minutes
 
+- [[2026-09-11-refine-plan-first-increment-minutes]] - Minutes for Refine: Plan the first increment — ordered.
 - [[2026-09-11-plan-first-increment-ordered-minutes]] - Minutes for Plan the first increment — ordered.
 
 ## Interviews
@@ -69,6 +71,7 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 
 ## Roadmaps
 
+- [[f9bddde9-roadmap]] - Strategic implementation roadmap for Refine: Plan the first increment — ordered.
 - [[dcd07828-roadmap]] - Strategic implementation roadmap for Plan the first increment — ordered.
 
 ## ADRs
@@ -77,6 +80,7 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 
 ## Plans
 
+- [[2026-09-11-unblock-scaffold-start-step]] - Unblock scaffold start (Step 1) by completing the three hard prerequisites today (2026-09-11): freeze telemetry schema &
 - [[2026-09-11-plan-first-increment-ordered]] - Plan the first increment — ordered
 - [[2026-09-11-execution-spec-plan-first]] - Execution Spec — Plan the first increment — ordered
 
