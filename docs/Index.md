@@ -7,7 +7,7 @@ tags:
 - moc
 title: Index
 type: index
-updated: '2026-09-15T17:27:30.106632'
+updated: '2026-09-15T18:05:32.385399'
 ---
 
 # Index
@@ -33,6 +33,7 @@ updated: '2026-09-15T17:27:30.106632'
 ## Findings
 
 - [[2026-09-11-name-runtime]] — Grill interview on Name the runtime (7 settled decisions).
+- [[2026-09-15-define-noun-phrase-8]] — Grill interview on Define: (noun phrase <=8 (1 settled decisions).
 - [[2026-09-15-define-term-noun-phrase]] — Grill interview on Define: term (noun phrase, max 8 words) or none (1 settled decisions).
 
 ## Meetings
@@ -40,17 +41,20 @@ updated: '2026-09-15T17:27:30.106632'
 - [[2026-09-10-classic-asteroids-arcade]] — Meeting note on Classic Asteroids arcade game, with vampire survivor mechanics.
 - [[2026-09-11-plan-first-increment-ordered]] — Meeting note on Plan the first increment — ordered.
 - [[2026-09-11-refine-plan-first-increment]] — Meeting note on Refine: Plan the first increment — ordered.
+- [[2026-09-15-lets-deliver-next-increment]] — Meeting note on lets deliver the next increment.
 - [[2026-09-15-todo-integrations]] — Meeting note on todo integrations.
 
 ## Minutes
 
 - [[2026-09-11-plan-first-increment-ordered-minutes]] — Minutes for Plan the first increment — ordered.
 - [[2026-09-11-refine-plan-first-increment-minutes]] — Minutes for Refine: Plan the first increment — ordered.
+- [[2026-09-15-lets-deliver-next-increment-minutes]] — Minutes for lets deliver the next increment.
 - [[2026-09-15-todo-integrations-minutes]] — Minutes for todo integrations.
 
 ## Interviews
 
 - [[2026-09-11-name-runtime-interview]] — Operator interview session on Name the runtime.
+- [[2026-09-15-define-noun-phrase-8-interview]] — Operator interview session on Define: (noun phrase <=8.
 - [[2026-09-15-define-term-noun-phrase-interview]] — Operator interview session on Define: term (noun phrase, max 8 words) or none.
 
 ## Research
@@ -60,24 +64,27 @@ updated: '2026-09-15T17:27:30.106632'
 ## Roadmaps
 
 - [[66c0c184-roadmap]] — Strategic implementation roadmap for todo integrations.
+- [[9e074528-roadmap]] — Strategic implementation roadmap for lets deliver the next increment.
 - [[dcd07828-roadmap]] — Strategic implementation roadmap for Plan the first increment — ordered.
 - [[f9bddde9-roadmap]] — Strategic implementation roadmap for Refine: Plan the first increment — ordered.
 - [[todos]] — Named overflow parked from council rooms. Tick here; do not copy into a meeting's Next actions.
 
 ## ADRs
 
-- _No ADRs yet_
+- [[adr-001-registration-invocation]] — Expert recommendation: Use a typed event emitter (e.g., `mitt` or a minimal custom `EventTarget`) exported from a dedicated `upgradeHook.ts` module; the core loop calls `emitter.emit('upgrade_chosen', upgradeId)` and the UX validator subscribes via `emitter.on('upgrade_chosen', handler)`.
 
 ## Plans
 
 - [[2026-09-11-execution-spec-plan-first]] — Execution Spec — Plan the first increment — ordered
 - [[2026-09-11-unblock-execute-locked-12]] — Unblock and execute the locked 12-day first increment for Asteroids Survivor. Three hard prerequisites (telemetry schema
 - [[2026-09-11-unblock-scaffold-start-step]] — Unblock scaffold start (Step 1) by completing the three hard prerequisites today (2026-09-11): freeze telemetry schema &
+- [[2026-09-15-execution-spec-asteroids]] — Execution Spec — Asteroids Survivor: Three-Gate Scaffold Unblock
 - [[2026-09-15-todo-integrations-execution]] — todo integrations — Execution Spec
 
 ## Prompts
 
 - [[prompt-execution-execute-execution-spec-plan]] — Hand the "Execution Spec — Plan the first increment — ordered" plan to a coding agent for implementation.
+- [[prompt-execution-execute-lets-deliver-next]] — Hand the "lets deliver the next increment" plan to a coding agent for implementation.
 
 ## Code
 
@@ -93,7 +100,7 @@ updated: '2026-09-15T17:27:30.106632'
 
 ## Locks
 
-- _No locks yet_
+- [[Locks]] — Current accepted project-wide locks.
 
 ## Memory
 

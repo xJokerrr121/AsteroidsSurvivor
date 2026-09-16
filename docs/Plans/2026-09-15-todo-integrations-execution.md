@@ -37,74 +37,77 @@ type: plan
 - Tech Researcher
 
 ## Goal
-Ship Gate 1 (repo + CI with frozen telemetry schema) and Gate 2 (IndexedDB persistence + `navigator.sendBeacon` telemetry beacon with security checks) today so scaffold can proceed tomorrow. Gate 3 (playable core loop) gets UX acceptance criteria written today for tomorrow's verification. Event-bus contract between persistence and beacon is owned by TEM with security checklist baked in.
+Ship Gate 1 (repo + CI with frozen telemetry schema) and Gate 2 (IndexedDB persistence + beacon telemetry with security checks) today so the scaffold can land tomorrow. Gate 3 (playable core loop) gets UX acceptance criteria published today for tomorrow's verification. All gates require pass/fail checks and a security verification checklist (aggregated-only telemetry, local-only persistence until opt-in).
 
 ## Locked decisions
 - Three gates with pass/fail checks: Gate 1 repo+CI (Lead Engineer), Gate 2 persistence+beacon (Technical Engineering Manager), Gate 3 playable core loop (owner unnamed) — [[ADR-three-gates]]
-- Scaffold tomorrow if Gates 1 and 2 land today — [[ADR-scaffold-trigger]]
-- Security verification checklist on each gate: telemetry beacon sends only aggregated, non-identifiable data; persistence stays local until opt-in — [[ADR-security-checklist]]
+- Scaffold tomorrow if Gates 1 and 2 land today — [[ADR-scaffold-tomorrow]]
+- Security verification checklist on every gate: beacon sends only aggregated, non-identifiable data; persistence stays local until opt-in — [[ADR-security-checklist]]
 - Telemetry schema frozen in repo (session_id, event_name, timestamp, properties) — [[ADR-telemetry-schema]]
-- Minimal event-bus contract between persistence and beacon owned by TEM; Lead Engineer exposes schema — [[ADR-event-bus-contract]]
-- CI pipeline: cheap budget single job `npm ci && npm run build && npx gh-pages -d dist` — [[ADR-ci-pipeline]]
-- DevOps adds lint/typecheck/test gates to CI after scaffold as Day-2 task, not a blocker — [[ADR-ci-day2]]
+- Minimal event-bus contract between persistence and beacon owned by TEM; Lead Engineer exposes schema, TEM defines handshake — [[ADR-event-bus-contract]]
 - UX acceptance criteria for Gate 3: first-run completes wave 1 without tutorial, controls discovered in ≤5s, upgrade choice understood on first pick — [[ADR-ux-criteria]]
-- Event-bus requires four telemetry events for first-run criteria — [[ADR-four-events]]
+- CI pipeline: cheap single job `npm ci && npm run build && npx gh-pages -d dist` on every `main` push; lint/typecheck/test gates added post-scaffold as Day-2 task — [[ADR-ci-pipeline]]
+- Event-bus requires four telemetry events for first-run criteria; event-bus contract includes security checklist — [[ADR-event-bus-telemetry]]
 
 ## Constraints
-- Must: Zero backend for MVP — all state local (IndexedDB), analytics via client-side beacon to Plausible/Umami
-- Must: Telemetry beacon uses `navigator.sendBeacon()` with frozen JSON schema
+- Must: Zero backend for MVP — all state local (IndexedDB), analytics via client-side beacon to managed endpoint (Plausible/Umami/Cloudflare Worker)
+- Must: Telemetry uses `navigator.sendBeacon()` with frozen JSON schema
 - Must: Persistence stays local until explicit opt-in
-- Must: Security verification checklist passes on each gate before scaffold
-- Must-not: Lint/typecheck/test gates block scaffold (Day-2 only)
-- Out of scope: Leaderboard, backend services, dual-mode compromise
+- Must: Each gate has a measurable pass/fail signal
+- Must-not: Block scaffold on lint/typecheck/test gates (Day-2 follow-up only)
+- Out of scope: Leaderboard, backend auth, rate-limiting, CSV export, Lighthouse CI budgets
 
 ## Surfaces
-- Repo root with `package.json`, GitHub Actions workflow (`.github/workflows/ci.yml`)
-- Telemetry schema file (location not named — infer: `src/telemetry/schema.json` or similar)
-- Persistence module (IndexedDB wrapper — area: `persistence`)
-- Beacon module (`navigator.sendBeacon` transport — area: `beacon`)
-- Event-bus contract (minimal interface between persistence and beacon — area: `event-bus`)
-- Security verification checklist (added to each gate's done criteria — area: `security`)
-- UX first-run criteria doc (operator artifact — area: `ux/criteria.md`)
-- CI pipeline: single job `npm ci && npm run build && npx gh-pages -d dist`
+- **Repo root**: `package.json`, `tsconfig.json`, `.github/workflows/ci.yml` (single job: `npm ci && npm run build && npx gh-pages -d dist`)
+- **Telemetry schema**: `src/telemetry/schema.json` — `{ session_id: string, event_name: string, timestamp: number, properties: Record<string, unknown> }`
+- **Event-bus contract**: `src/event-bus/contract.ts` — minimal typed interface between persistence and beacon (four events: `session_start`, `wave1_complete`, `control_discovered`, `upgrade_picked`)
+- **Persistence module**: `src/persistence/index.ts` — IndexedDB wrapper, local-only, exports `saveState`, `loadState`, `clearState`
+- **Beacon module**: `src/telemetry/beacon.ts` — `sendEvent(event: TelemetryEvent)` using `navigator.sendBeacon()`, aggregates only, no PII
+- **Security checklist**: `SECURITY_CHECKLIST.md` — per-gate verification steps (aggregated-only, local-only, opt-in guard)
+- **UX criteria doc**: `UX_FIRST_RUN_CRITERIA.md` — wave-1 completion, ≤5s control discovery, upgrade choice understood
+- **Scaffold entry**: `src/main.ts` — bootstraps persistence, beacon, event-bus; renders to `#app`
 
 ## Execution graph
 ```mermaid
 flowchart TD
-    A[Freeze telemetry schema in repo] --> B[Gate 1: Repo + CI pipeline]
-    A --> C[Gate 2: Persistence + Beacon]
-    B --> D[Security checklist on Gate 1]
-    C --> E[Security checklist on Gate 2]
-    C --> F[Event-bus contract: persistence ↔ beacon]
-    F --> E
-    D --> G[Scaffold tomorrow if both gates pass]
-    E --> G
-    H[UX writes first-run criteria doc] --> G
+    A[Freeze telemetry schema in repo] --> B[Implement repo + CI pipeline]
+    A --> C[Implement persistence (IndexedDB)]
+    A --> D[Implement beacon telemetry]
+    C --> E[Define event-bus contract + handshake]
+    D --> E
+    E --> F[Wire persistence + beacon via event-bus]
+    F --> G[Add security checklist to Gate 1 & 2 done criteria]
+    B --> H[Gate 1 pass/fail: CI green + schema frozen + security checklist pass]
+    G --> I[Gate 2 pass/fail: persistence+beacon work + event-bus handshake + security checklist pass]
+    J[Publish UX first-run criteria doc] --> K[Gate 3 criteria ready for tomorrow]
+    H --> L[Scaffold tomorrow if Gate 1 & 2 pass]
+    I --> L
+    K --> L
 ```
 
 ## Steps
-1. `repo` — Initialize repo with `package.json`, TypeScript config, and frozen telemetry schema (`session_id`, `event_name`, `timestamp`, `properties`) — Acceptance: schema file committed, `npm ci` succeeds
-2. `.github/workflows/ci.yml` — Add cheap CI pipeline: single job `npm ci && npm run build && npx gh-pages -d dist` on every `main` push — Acceptance: workflow runs green on push
-3. `persistence` — Implement IndexedDB wrapper for local-only state (no network calls) — Acceptance: unit test writes/reads round-trip in IndexedDB, no fetch/XHR observed
-4. `beacon` — Implement `navigator.sendBeacon()` transport sending frozen schema events to managed endpoint (Plausible/Umami) — Acceptance: beacon fires with correct schema, payload inspected shows only aggregated non-identifiable fields
-5. `event-bus` — Define minimal contract (four events: `session_start`, `wave1_complete`, `control_discovered`, `upgrade_picked`) and handshake between persistence and beacon — Acceptance: contract doc + TypeScript interfaces committed, persistence emits, beacon consumes
-6. `security` — Add security verification checklist to Gate 1 and Gate 2 done criteria: verify beacon payload has no PII, persistence has no network access, opt-in flag defaults false — Acceptance: checklist passes in CI logs for both gates
-7. `ux/criteria.md` — UX/UI Designer publishes first-run criteria doc (wave 1 completion without tutorial, ≤5s control discovery, upgrade choice understood on first pick) — Acceptance: doc exists and references four telemetry events
-8. `scaffold` — If Gates 1 and 2 pass (CI green + security checklist pass), run scaffold tomorrow — Acceptance: scaffold command executes without error
+1. `src/telemetry/schema.json` — Write frozen telemetry schema (session_id, event_name, timestamp, properties) — Acceptance: file exists, valid JSON, matches expert schema, committed to `main`
+2. `.github/workflows/ci.yml` — Add cheap CI pipeline: single job `npm ci && npm run build && npx gh-pages -d dist` on `main` push — Acceptance: workflow runs green on push, deploys to gh-pages
+3. `src/persistence/index.ts` — Implement IndexedDB wrapper with `saveState`, `loadState`, `clearState`; enforce local-only, no network — Acceptance: unit test writes/reads/clears state in IndexedDB, no fetch/XHR calls
+4. `src/telemetry/beacon.ts` — Implement `sendEvent(event)` using `navigator.sendBeacon()` to managed endpoint; serialize per frozen schema; strip PII — Acceptance: test sends beacon with aggregated payload, no identifier fields present
+5. `src/event-bus/contract.ts` — Define minimal event-bus interface (four events: `session_start`, `wave1_complete`, `control_discovered`, `upgrade_picked`) and handshake types — Acceptance: TypeScript compiles, persistence and beacon import types without circular deps
+6. `src/persistence/index.ts` + `src/telemetry/beacon.ts` — Wire persistence and beacon via event-bus: persistence emits events, beacon subscribes and sends — Acceptance: integration test shows `wave1_complete` persisted then beaconed with correct schema
+7. `SECURITY_CHECKLIST.md` — Add per-gate security verification: (a) beacon payload contains only aggregated fields, (b) persistence never writes to network, (c) opt-in guard blocks sharing — Acceptance: checklist exists, Gate 1 and Gate 2 CI steps reference it
+8. `UX_FIRST_RUN_CRITERIA.md` — Publish UX acceptance criteria: wave-1 completion without tutorial, controls discovered ≤5s, upgrade choice understood on first pick — Acceptance: doc exists, references four telemetry events, ready for tomorrow's verification
+9. `src/main.ts` — Scaffold entry: bootstrap persistence, beacon, event-bus; render to `#app` — Acceptance: `npm run build` succeeds, `dist/` contains bootstrapped app, no console errors on load
 
 ## Verification
-- Gate 1 pass: CI workflow green on `main` + security checklist passes (schema frozen, no PII in beacon)
-- Gate 2 pass: Persistence IndexedDB tests green + beacon sends correct schema + security checklist passes (local-only, aggregated-only)
-- Gate 3 ready: UX criteria doc published + four telemetry events defined in event-bus contract
-- Scaffold trigger: Both Gate 1 and Gate 2 pass today → scaffold runs tomorrow
+- Gate 1 pass: CI workflow green on `main`, `src/telemetry/schema.json` present and frozen, `SECURITY_CHECKLIST.md` Gate 1 items checked
+- Gate 2 pass: Persistence+beacon integration test passes, event-bus handshake works, `SECURITY_CHECKLIST.md` Gate 2 items checked
+- Gate 3 ready: `UX_FIRST_RUN_CRITERIA.md` published and references four telemetry events
+- Scaffold unblocked: Both Gate 1 and Gate 2 pass today → scaffold runs tomorrow
 
 ## Open risks
-- Gate 3 owner unnamed — who owns playable core loop implementation?
-- Exact file paths for telemetry schema, persistence, beacon, event-bus not named in room — infer from area labels
-- Managed analytics endpoint (Plausible/Umami/Cloudflare Worker) not selected — need operator decision
-- Security checklist format not specified — need checklist template
-- Scaffold command/target not defined — need DevOps clarification
-- Date for "tomorrow" scaffold not given as YYYY-MM-DD — room date is 2026-09-15, so scaffold likely 2026-09-16
+- Gate 3 owner unnamed — who verifies playable core loop tomorrow?
+- Managed analytics endpoint (Plausible/Umami/Cloudflare Worker) not selected — beacon URL placeholder needed
+- Four telemetry event payload shapes not fully specified — only names locked
+- Opt-in UI/flow for persistence sharing not designed — only "local until opt-in" constraint
+- Date for scaffold tomorrow not explicitly confirmed as 2026-09-16 — assume next calendar day
 
 ---
 

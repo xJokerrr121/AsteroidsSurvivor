@@ -199,6 +199,14 @@ UX/UI Designer pinned: gate-three-ux-criteria includes wave-1 completion, 5s con
 
 Product Manager moved the room on to Consolidate.
 
+## You
+
+The Interview you asked for is done. These are now defined, and they are settled:
+
+1. threat-modeling for Define: term (noun phrase, max 8 words) or none: Expert recommendation: Authenticate Define: term (noun phrase, max 8 words) or none at the boundary, authorize per resource, and rate-limit whatever an attacker can reach.
+
+Reason from these as given. Do not re-argue them, and drop whichever assumptions you were each carrying instead.
+
 ## Open questions
 
 - What's on the todo list? The project note mentions "three hard gates block scaffold tomorrow" owned by TEM — are those the items, or is there a separate list?

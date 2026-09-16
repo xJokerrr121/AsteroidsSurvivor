@@ -36,3 +36,8 @@ Checkable overflow from council rooms. Tick here; do not copy into a meeting's N
 - [ ] Add lint/typecheck/test gates to CI pipeline -- owner: Lead Engineer -- from: [[2026-09-15-todo-integrations]] -- why: not this increment, but required before team scales.
 - [ ] Write UX acceptance criteria for gate three -- owner: UX/UI Designer -- from: [[2026-09-15-todo-integrations]] -- why: scaffold tomorrow depends on testable "playable" definition
 - [ ] Add lint/typecheck/test gates to CI pipeline after scaffold -- owner: DevOps Engineer -- from: [[2026-09-15-todo-integrations]] -- why: not this increment.
+- [ ] define wave-1 acceptance criteria -- owner: TEM -- from: [[2026-09-15-lets-deliver-next-increment]] -- why: needed before scaffold but not this increment's code.
+- [ ] verify beacon.ts emits exactly those four event shapes -- owner: TEM -- from: [[2026-09-15-lets-deliver-next-increment]] -- why: retention funnel needs them day one
+- [ ] sketch telemetry mapping layer -- owner: Tech Researcher -- from: [[2026-09-15-lets-deliver-next-increment]] -- why: keeps telemetry decoupled from persistence per Architect boundary; not this increment unless TEM asks.
+- [ ] Security Engineer async gate review -- owner: Security Engineer -- from: [[2026-09-15-lets-deliver-next-increment]] -- why: not on critical path for tomorrow's ship.
+- [ ] Draft a versioned telemetry event schema -- owner: Architect -- from: [[2026-09-15-lets-deliver-next-increment]] -- why: not this increment

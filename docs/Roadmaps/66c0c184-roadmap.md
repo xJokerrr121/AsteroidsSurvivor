@@ -34,54 +34,54 @@ type: roadmap
 
 ## Situation
 
-The team locked a three-gate plan to unblock tomorrow's scaffold: Lead Engineer ships repo+CI today, Technical Engineering Manager ships persistence+beacon today, UX/UI Designer writes first-run criteria today for tomorrow's verification. All gates require pass/fail checks; Security adds local-only/aggregated telemetry verification to each; Architect requires a minimal event-bus contract between persistence and beacon with frozen telemetry schema in repo.
+The team locked a three-gate plan to unblock scaffold tomorrow. Gate 1 (repo + CI) and Gate 2 (persistence + beacon) ship today with pass/fail checks; Gate 3 (first-run UX criteria) gets written today for tomorrow's verification. Security verification checklists are baked into each gate. An event-bus contract between persistence and beacon is TEM's responsibility with the telemetry schema frozen in repo.
 
 ## Decisions
 
-- Three gates with explicit pass/fail checks (Product Manager, Technical Engineering Manager, Lead Engineer, Architect)
-- Gate 1 — Lead Engineer owns repo+CI on the cheap pipeline (`npm ci && npm run build && npx gh-pages -d dist`), telemetry schema frozen in repo (Lead Engineer)
-- Gate 2 — Technical Engineering Manager owns persistence (IndexedDB, local-only) + beacon (client-side `navigator.sendBeacon` to Plausible/Umami) with Security's aggregated/non-identifiable checks baked in (Technical Engineering Manager, Security Engineer)
-- Gate 3 — UX/UI Designer owns first-run criteria doc today: wave 1 without tutorial, controls discovered ≤5s, upgrade choice understood on first pick (UX/UI Designer)
-- Scaffold tomorrow iff Gate 1 and Gate 2 both land today (Product Manager, Technical Engineering Manager, Lead Engineer, DevOps Engineer)
-- Security verification checklist added to each gate's done criteria (Security Engineer)
-- Minimal event-bus contract between persistence and beacon; TEM defines the handshake, Lead Engineer exposes the schema (Architect, Lead Engineer)
-- DevOps follow-up: add lint/typecheck/test gates to CI after scaffold (Day-2, not a blocker) (DevOps Engineer)
+- **Three gates with pass/fail checks** — Product Manager locked the plan; Technical Engineering Manager and Lead Engineer confirmed ownership and timeline.
+- **Gate 1: Repo + CI** — Lead Engineer ships today on the cheap pipeline (`npm ci && npm run build && npx gh-pages -d dist`); no lint/typecheck/test gates (Day-2 follow-up per DevOps Engineer).
+- **Gate 2: Persistence + Beacon** — Technical Engineering Manager ships today; includes Security Engineer's local-only/aggregated telemetry checks.
+- **Gate 3: First-run UX criteria** — UX/UI Designer publishes today: wave 1 completion without tutorial, controls discovered in ≤5s, upgrade choice understood on first pick.
+- **Security verification checklist added to each gate** — Security Engineer mandated verification that telemetry beacon only sends aggregated non-identifiable data and persistence stays local until opt-in.
+- **Event-bus contract between persistence and beacon** — Architect required minimal contract; Lead Engineer freezes telemetry schema in repo, TEM defines the handshake with security checklist baked in.
+- **Scaffold tomorrow if Gate 1 and Gate 2 land today** — All seats aligned; Tech Researcher confirmed plan is executable with no re-planning needed.
 
 ## Open questions / disagreements
 
-- Architect: plan still lacks explicit contracts between persistence and beacon components, risking hidden coupling.
-- Security Engineer: security verification was missing; without it we risk shipping identifiable data. Refuted UX's claim that event-bus needs four telemetry events until security checklist is added.
-- UX/UI Designer: UX criteria is the only gate-three artifact not yet written; without it tomorrow's scaffold verification has no pass/fail bar. Supported Security's requirement that event-bus contract must verify aggregated/non-identifiable data.
-- Security Engineer ↔ UX/UI Designer resolved: event-bus handshake requires security checklist (persistence-beacon handshake must verify aggregated, non-identifiable data).
+- **Architect's coupling concern** — The plan "still lacks explicit contracts between the persistence and beacon components, risking hidden coupling." TEM accepted ownership of the event-bus handshake, but the contract itself is not yet written.
+- **Security vs. UX on event-bus telemetry events** — Security Engineer initially refuted UX/UI Designer's claim that the event-bus needs four telemetry events due to missing security verification; UX/UI Designer then supported the claim because the persistence-beacon handshake must verify aggregated non-identifiable data. Resolution: security checklist baked into TEM's handshake definition.
+- **CI quality gates deferred** — DevOps Engineer explicitly parked lint/typecheck/test gates as Day-2 work; cheap pipeline ships without them. No dissent recorded, but this is a known quality debt item.
 
 ## Roadmap
 
 ### Now
-- Lead Engineer pushes repo+CI with telemetry schema frozen in repo — owner: Lead Engineer
-  - Risk: cheap pipeline ships without lint/typecheck/test gates
-- Technical Engineering Manager pushes persistence+beacon with security checks — owner: Technical Engineering Manager
-  - Risk: event-bus contract handshake not yet defined; hidden coupling risk per Architect
-- UX/UI Designer publishes first-run criteria doc — owner: UX/UI Designer
-  - Risk: only gate-three artifact not yet written; scaffold verification has no bar without it
-- Technical Engineering Manager defines event-bus contract/handshake with security checklist — owner: Technical Engineering Manager
-  - Risk: Security and UX both flagged this as required before gate passes
+- **Lead Engineer pushes repo + CI with frozen telemetry schema** — owner: Lead Engineer
+  - Risk: Cheap pipeline lacks lint/typecheck/test gates; regressions possible until Day-2 hardening.
+- **Technical Engineering Manager pushes persistence + beacon with security checks** — owner: Technical Engineering Manager
+  - Risk: Event-bus contract not yet defined; hidden coupling if handshake drifts from schema.
+- **UX/UI Designer publishes first-run criteria doc** — owner: UX/UI Designer
+  - Risk: Criteria must be testable tomorrow; vague criteria would block Gate 3 verification.
 
 ### Next
-- Scaffold tomorrow if Gate 1 and Gate 2 land today — owner: Lead Engineer + Technical Engineering Manager
-- Add lint/typecheck/test gates to CI pipeline — owner: DevOps Engineer
-  - Risk: Day-2 task, not a blocker for scaffold
+- **Scaffold playable core loop** — owner: Lead Engineer + Technical Engineering Manager
+  - Risk: Only proceeds if both Gate 1 and Gate 2 land today with passing checks.
+- **Verify first-run criteria against scaffold** — owner: UX/UI Designer + QA Engineer
+  - Risk: No pass/fail bar exists until criteria doc lands; QA Engineer flagged need for pass/fail check on Gate 3.
+- **Add lint/typecheck/test gates to CI pipeline** — owner: DevOps Engineer
+  - Risk: Day-2 task; current pipeline deploys on every `main` push without quality gates.
 
 ### Later
 - Nothing parked for later.
 
 ## Next actions
 
-- [ ] Lead Engineer: push repo+CI with telemetry schema frozen in repo
-- [ ] Technical Engineering Manager: push persistence+beacon with security checks (local-only IndexedDB, aggregated beacon)
-- [ ] UX/UI Designer: publish first-run criteria doc (wave 1, ≤5s control discovery, upgrade choice understood)
-- [ ] Technical Engineering Manager: define event-bus contract/handshake between persistence and beacon with security checklist
-- [ ] Security Engineer: add security verification checklist to each gate's done criteria
-- [ ] DevOps Engineer: prepare lint/typecheck/test gate additions for Day-2 CI enhancement
+- [ ] Lead Engineer: Push repo + CI with telemetry schema frozen in repo
+- [ ] Technical Engineering Manager: Push persistence + beacon with security verification checklist
+- [ ] Technical Engineering Manager: Define event-bus handshake contract between persistence and beacon (with security checklist)
+- [ ] UX/UI Designer: Publish first-run criteria doc (wave 1 no tutorial, controls ≤5s, upgrade understood on first pick)
+- [ ] Security Engineer: Verify security checklist passes on both Gate 1 and Gate 2 deliveries
+- [ ] QA Engineer: Prepare pass/fail verification for all three gates tomorrow
+- [ ] DevOps Engineer: Schedule Day-2 CI hardening (lint/typecheck/test gates) after scaffold
 
 ## Links
 
