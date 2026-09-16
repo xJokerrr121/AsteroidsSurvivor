@@ -18,13 +18,32 @@ export interface GameState {
   lastRunAt: string | null;
   /** Total runs finished on this device. */
   runCount: number;
+  /** Highest wave number cleared on this device. */
+  wavesCleared: number;
+  /** Duration of the run that just ended, in milliseconds. */
+  lastRunDurationMs: number;
 }
 
 export const EMPTY_STATE: GameState = {
   highScoreMs: 0,
   lastRunAt: null,
   runCount: 0,
+  wavesCleared: 0,
+  lastRunDurationMs: 0,
 };
+
+const changeTarget = new EventTarget();
+
+/**
+ * Generic store-change hook. Fires with the full new state after every
+ * successful write — no event semantics here, callers decide what a change
+ * means (see `src/telemetry/beaconMapping.ts`).
+ */
+export function onStateChange(handler: (state: GameState) => void): () => void {
+  const listener = (event: Event) => handler((event as CustomEvent<GameState>).detail);
+  changeTarget.addEventListener('change', listener);
+  return () => changeTarget.removeEventListener('change', listener);
+}
 
 function openDb(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -66,6 +85,7 @@ export async function saveState(state: GameState): Promise<void> {
       tx.onerror = () => reject(tx.error);
     });
     db.close();
+    changeTarget.dispatchEvent(new CustomEvent('change', { detail: state }));
   } catch {
     // Persistence is best-effort; a run is still playable without it.
   }
@@ -74,9 +94,21 @@ export async function saveState(state: GameState): Promise<void> {
 /** Folds a finished run into the stored state and persists it. */
 export async function recordRun(previous: GameState, survivedMs: number): Promise<GameState> {
   const next: GameState = {
+    ...previous,
     highScoreMs: Math.max(previous.highScoreMs, survivedMs),
     lastRunAt: new Date().toISOString(),
     runCount: previous.runCount + 1,
+    lastRunDurationMs: survivedMs,
+  };
+  await saveState(next);
+  return next;
+}
+
+/** Folds a wave clear into the stored state and persists it. */
+export async function recordWaveClear(previous: GameState, waveNumber: number): Promise<GameState> {
+  const next: GameState = {
+    ...previous,
+    wavesCleared: Math.max(previous.wavesCleared, waveNumber),
   };
   await saveState(next);
   return next;

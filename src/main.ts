@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
-import { DEATH_EVENT, GameScene } from './game/GameScene';
-import { loadState, recordRun, type GameState } from './persistence/storage';
-import { sendEvent } from './telemetry/beacon';
+import { CoreLoopScene, DEATH_EVENT, WAVE_CLEARED_EVENT } from './core/loop';
+import { loadState, recordRun, recordWaveClear, type GameState } from './persistence/storage';
+import { initTelemetryMapping } from './telemetry/beaconMapping';
 
 const GAME_WIDTH = 960;
 const GAME_HEIGHT = 600;
@@ -19,14 +19,14 @@ function formatSeconds(ms: number): string {
 async function bootstrap(): Promise<void> {
   let state: GameState = await loadState();
 
-  sendEvent('session_start', { returning: state.runCount > 0 });
+  initTelemetryMapping(state);
 
   const overlay = element<HTMLDivElement>('game-over');
   const summary = element<HTMLParagraphElement>('game-over-summary');
   const best = element<HTMLParagraphElement>('game-over-best');
   const continueButton = element<HTMLButtonElement>('continue-button');
 
-  const scene = new GameScene();
+  const scene = new CoreLoopScene();
   const game = new Phaser.Game({
     type: Phaser.AUTO,
     parent: 'game-root',
@@ -41,15 +41,18 @@ async function bootstrap(): Promise<void> {
   // `scene.events` only exists once the scene manager has booted the scene.
   game.events.once(Phaser.Core.Events.READY, () => {
     scene.events.on(DEATH_EVENT, onDeath);
+    scene.events.on(WAVE_CLEARED_EVENT, onWaveCleared);
   });
+
+  function onWaveCleared(waveNumber: number): void {
+    void (async () => {
+      state = await recordWaveClear(state, waveNumber);
+    })();
+  }
 
   function onDeath(survivedMs: number): void {
     void (async () => {
       state = await recordRun(state, survivedMs);
-      sendEvent('death', {
-        survived_ms: survivedMs,
-        high_score_ms: state.highScoreMs,
-      });
       summary.textContent = `You survived ${formatSeconds(survivedMs)}.`;
       best.textContent = `Best: ${formatSeconds(state.highScoreMs)} · Runs: ${state.runCount}`;
       overlay.hidden = false;
@@ -58,7 +61,6 @@ async function bootstrap(): Promise<void> {
   }
 
   continueButton.addEventListener('click', () => {
-    sendEvent('continue_click', { high_score_ms: state.highScoreMs });
     overlay.hidden = true;
     scene.startRun();
   });

@@ -1,0 +1,28 @@
+name: Deploy
+
+# Wave-1 core loop increment (2026-09-15 plan). Single job, no lint/typecheck/
+# test gates by design — those live in the separate PR gate (ci.yml). Deploys
+# on every push to main so the retention probe stays live on Pages.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - run: npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"

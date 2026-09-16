@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://xjokerrr121.github.io/AsteroidsSurvivor/telemetry-schema.json",
   "title": "Asteroids Survivor telemetry event",
-  "description": "Frozen 2026-09-11. Every client event sent via navigator.sendBeacon() to VITE_TELEMETRY_ENDPOINT MUST validate against this schema. No changes after 2026-09-11 without a new plan.",
-  "x-frozen-on": "2026-09-11",
+  "description": "Updated 2026-09-16 for the wave-1 core loop increment (docs/Plans/2026-09-15-lets-deliver-next-increment.md). Supersedes the 2026-09-11 freeze. Every client event sent via navigator.sendBeacon() to VITE_TELEMETRY_ENDPOINT MUST validate against this schema. No changes after 2026-09-16 without a new plan.",
+  "x-frozen-on": "2026-09-16",
   "x-transport": "navigator.sendBeacon()",
   "x-endpoint-env": "VITE_TELEMETRY_ENDPOINT",
   "x-retention-targets": {
@@ -21,8 +21,8 @@
     },
     "event_name": {
       "type": "string",
-      "description": "Closed set for the MVP increment.",
-      "enum": ["session_start", "death", "continue_click"]
+      "description": "Closed set for the wave-1 retention probe.",
+      "enum": ["session_start", "wave_cleared", "upgrade_chosen", "session_end"]
     },
     "timestamp": {
       "type": "string",
@@ -36,17 +36,25 @@
         "type": ["string", "number", "boolean"]
       },
       "properties": {
-        "survived_ms": {
-          "type": "number",
-          "description": "death: milliseconds survived on the run that just ended."
-        },
-        "high_score_ms": {
-          "type": "number",
-          "description": "death / continue_click: best survived_ms stored in IndexedDB."
-        },
         "returning": {
           "type": "boolean",
           "description": "session_start: true when IndexedDB already holds a previous run."
+        },
+        "wave_number": {
+          "type": "number",
+          "description": "wave_cleared: the wave number that was just cleared."
+        },
+        "upgrade_id": {
+          "type": "string",
+          "description": "upgrade_chosen: id of the upgrade the player claimed."
+        },
+        "duration_ms": {
+          "type": "number",
+          "description": "session_end: milliseconds survived on the run that just ended."
+        },
+        "high_score_ms": {
+          "type": "number",
+          "description": "session_end: best survived duration stored in IndexedDB."
         }
       }
     }

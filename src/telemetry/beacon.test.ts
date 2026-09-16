@@ -15,8 +15,8 @@ afterEach(() => {
 });
 
 describe('buildEvent', () => {
-  it('matches the frozen schema shape', () => {
-    const event = buildEvent('death', { survived_ms: 91_200 });
+  it('matches the schema shape', () => {
+    const event = buildEvent('session_end', { duration_ms: 91_200 });
 
     expect(Object.keys(event).sort()).toEqual([
       'event_name',
@@ -25,9 +25,9 @@ describe('buildEvent', () => {
       'timestamp',
     ]);
     expect(event.session_id).toBe(getSessionId());
-    expect(event.event_name).toBe('death');
+    expect(event.event_name).toBe('session_end');
     expect(new Date(event.timestamp).toISOString()).toBe(event.timestamp);
-    expect(event.properties).toEqual({ survived_ms: 91_200 });
+    expect(event.properties).toEqual({ duration_ms: 91_200 });
   });
 });
 
@@ -49,7 +49,7 @@ describe('sendEvent', () => {
     const sendBeacon = stubBeacon();
     vi.stubEnv('VITE_TELEMETRY_ENDPOINT', endpoint);
 
-    expect(sendEvent('death', {})).toBe(false);
+    expect(sendEvent('session_end', {})).toBe(false);
     expect(sendBeacon).not.toHaveBeenCalled();
   });
 
@@ -57,7 +57,7 @@ describe('sendEvent', () => {
     const sendBeacon = stubBeacon();
     vi.stubEnv('VITE_TELEMETRY_ENDPOINT', '');
 
-    expect(sendEvent('continue_click', {})).toBe(false);
+    expect(sendEvent('wave_cleared', {})).toBe(false);
     expect(sendBeacon).not.toHaveBeenCalled();
   });
 

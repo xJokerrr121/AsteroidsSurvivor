@@ -1,13 +1,16 @@
 /**
  * Telemetry beacon client.
  *
- * Event schema frozen 2026-09-11 — see `docs/telemetry-schema.json`.
+ * Event schema updated 2026-09-16 for the wave-1 core loop increment — see
+ * `docs/telemetry-schema.json`. Supersedes the 2026-09-11 freeze per
+ * `docs/Plans/2026-09-15-lets-deliver-next-increment.md` (four locked events
+ * feeding the Day-1/Day-7 retention probe).
  * Transport is `navigator.sendBeacon()` only: zero backend, fire-and-forget,
  * survives the tab being closed mid-run.
  */
 
-/** Closed event set for the MVP increment. */
-export type EventName = 'session_start' | 'death' | 'continue_click';
+/** Closed event set for the wave-1 retention probe. */
+export type EventName = 'session_start' | 'wave_cleared' | 'upgrade_chosen' | 'session_end';
 
 /** Properties carry facts about the run, never identifiers or free text. */
 export type EventProperties = Record<string, string | number | boolean>;
