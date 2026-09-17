@@ -95,3 +95,4 @@ The room locked a 12-day increment plan for Asteroids Survivor MVP. Step 1 (scaf
 - [[Project]]
 - [[2026-09-11-plan-first-increment-ordered]]
 - [[dcd07828-roadmap]]
+- [[Index]]

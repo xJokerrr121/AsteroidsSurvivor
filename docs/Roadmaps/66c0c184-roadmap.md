@@ -89,3 +89,5 @@ The team locked a three-gate plan to unblock scaffold tomorrow. Gate 1 (repo + C
 - [[2026-09-15-todo-integrations]]
 
 - Meeting source: `66c0c184`
+- [[Index]]
+- [[2026-09-15-todo-integrations-minutes]]

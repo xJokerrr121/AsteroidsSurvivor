@@ -51,3 +51,13 @@ Expert recommendation: Use a typed event emitter (e.g., `mitt` or a minimal cust
 ## Links & Related Records
 
 - [[Project]]
+
+## Links
+
+- [[Index]]
+- [[2026-09-15-define-noun-phrase-8]]
+- [[2026-09-15-define-noun-phrase-8-interview]]
+- [[Locks]]
+- [[2026-09-15-execution-spec-lets-deliver]]
+- [[2026-09-15-execution-spec-ship-wave]]
+- [[2026-09-16-auto-document-project]]

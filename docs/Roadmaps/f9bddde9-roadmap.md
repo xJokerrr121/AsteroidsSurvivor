@@ -80,3 +80,5 @@ The operator asked to refine the recently applied plan for the first increment. 
 - [[2026-09-11-refine-plan-first-increment]]
 
 - Meeting source: `f9bddde9`
+- [[Index]]
+- [[2026-09-11-refine-plan-first-increment-minutes]]

@@ -17,3 +17,7 @@ Short definitions and note summaries live in this folder so the council
 can retrieve them without dumping the whole vault.
 
 See [[Index]] for the current list.
+
+## Links
+
+- [[Project]]

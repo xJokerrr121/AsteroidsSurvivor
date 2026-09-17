@@ -15,3 +15,9 @@ updated: '2026-09-11T12:48:56.719494'
 # test-strategy for Name the runtime
 
 Expert recommendation: Cover the risky seams of Name the runtime with integration tests; unit-test only the logic that really branches.
+
+## Links
+
+- [[Project]]
+- [[Index]]
+- [[2026-09-11-name-runtime]]

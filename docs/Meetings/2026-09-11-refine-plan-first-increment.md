@@ -100,3 +100,7 @@ lets refine the recent aplied plan
 ---
 
 Back to [[Project]]
+
+## Links
+
+- [[Index]]

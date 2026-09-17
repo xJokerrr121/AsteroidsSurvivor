@@ -41,3 +41,14 @@ Checkable overflow from council rooms. Tick here; do not copy into a meeting's N
 - [ ] sketch telemetry mapping layer -- owner: Tech Researcher -- from: [[2026-09-15-lets-deliver-next-increment]] -- why: keeps telemetry decoupled from persistence per Architect boundary; not this increment unless TEM asks.
 - [ ] Security Engineer async gate review -- owner: Security Engineer -- from: [[2026-09-15-lets-deliver-next-increment]] -- why: not on critical path for tomorrow's ship.
 - [ ] Draft a versioned telemetry event schema -- owner: Architect -- from: [[2026-09-15-lets-deliver-next-increment]] -- why: not this increment
+- [ ] build level-up picker scene -- owner: Lead Engineer -- from: [[2026-09-16-discuss-new-features]] -- why: not this increment unless operator pulls it forward
+- [ ] Evaluate Rex plugin bundle impact -- owner: @tech -- from: [[2026-09-16-discuss-new-features]] -- why: not this increment unless operator pulls it.
+- [ ] verify session_id persistence in storage.ts -- owner: Data Analyst -- from: [[2026-09-16-discuss-new-features]] -- why: needed for upgrade-pick → next-session-start metric, not this increment if already present
+- [ ] Confirm session_id persistence in storage.ts -- owner: Data Analyst -- from: [[2026-09-16-discuss-new-features]] -- why: needed for upgrade-pick → next-session-start metric
+- [ ] check storage.ts for persisted session_id -- owner: me -- from: [[2026-09-16-discuss-new-features]] -- why: unblocks upgrade-pick → next-session-start metric for Day-1 retention probe
+## Links
+
+- [[Project]]
+- [[Index]]
+- [[2026-09-11-plan-first-increment-ordered-minutes]]
+- [[2026-09-15-lets-deliver-next-increment-minutes]]

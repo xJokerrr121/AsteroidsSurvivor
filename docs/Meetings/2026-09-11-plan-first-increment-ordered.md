@@ -198,3 +198,8 @@ three people who play browser arcade games weekly — one streamer, one speedrun
 ---
 
 Back to [[Project]]
+
+## Links
+
+- [[Index]]
+- [[todos]]

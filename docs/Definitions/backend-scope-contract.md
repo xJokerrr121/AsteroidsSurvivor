@@ -12,6 +12,19 @@ type: definition
 updated: '2026-09-11T12:48:56.467445'
 ---
 
-# Backend scope & contract
+# Backend Scope & Contract
 
-Expert recommendation: Zero backend for MVP — all state local (IndexedDB), analytics via client-side beacon to Plausible/Umami; leaderboard deferred to post-MVP.
+This note records the architectural decision on backend requirements for the MVP.
+
+## Expert Recommendation
+
+- **Zero backend for MVP** — all state remains local (IndexedDB)
+- **Analytics** — client-side beacon to Plausible or Umami
+- **Leaderboard** — deferred to post-MVP
+
+## Links
+
+- [[Project]]
+- [[Index]]
+- [[2026-09-11-name-runtime]]
+- [[Memory]]

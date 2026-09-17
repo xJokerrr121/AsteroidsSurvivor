@@ -72,3 +72,4 @@ The room reviewed the applied plan for the first increment and confirmed it is l
 - [[Project]]
 - [[2026-09-11-refine-plan-first-increment]]
 - [[f9bddde9-roadmap]]
+- [[Index]]

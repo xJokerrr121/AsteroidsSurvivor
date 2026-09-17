@@ -183,3 +183,9 @@ Ready for implementation.
 ---
 
 Back to [[Project]]
+
+## Links
+
+- [[Index]]
+- [[technical-strategy-name]]
+- [[test-strategy-name-runtime]]

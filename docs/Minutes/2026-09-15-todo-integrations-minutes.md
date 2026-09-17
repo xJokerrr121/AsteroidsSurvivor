@@ -88,3 +88,4 @@ The room locked a three-gate plan to unblock the scaffold. Gate 1 (repo + CI) is
 - [[Project]]
 - [[2026-09-15-todo-integrations]]
 - [[66c0c184-roadmap]]
+- [[Index]]

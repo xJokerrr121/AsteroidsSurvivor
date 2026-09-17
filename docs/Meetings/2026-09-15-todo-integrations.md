@@ -214,3 +214,9 @@ Reason from these as given. Do not re-argue them, and drop whichever assumptions
 ---
 
 Back to [[Project]]
+
+## Links
+
+- [[Index]]
+- [[todos]]
+- [[Memory]]

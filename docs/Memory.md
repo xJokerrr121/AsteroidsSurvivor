@@ -10,7 +10,7 @@ tags:
 - attendees
 title: Shared memory
 type: memory
-updated: '2026-09-15T23:52:27.032934'
+updated: '2026-09-17T15:30:46.517472'
 ---
 
 # Shared memory
@@ -25,3 +25,6 @@ Working facts sitting attendees currently hold. Not locks. Supersede a slug; do 
 - telemetry-four-events-session-start-wave-cleared-upgrade — telemetry-four-events-session-start-wave-cleared-upgrade-chosen-session-end -- because: Data Analyst specified for Day-1/Day-7 retention funnel -- cite: [[memory]] -- by: Lead Engineer -- from: [[2026-09-15-lets-deliver-next-increment]] -- at: 2026-09-15T23:51:13.250933
 - persistence-has-generic-store-change-hook — persistence has generic store-change hook -- because: backend-scope-contract says IndexedDB only with change hook -- cite: [[backend-scope-contract]] -- by: Tech Researcher -- from: [[2026-09-15-lets-deliver-next-increment]] -- at: 2026-09-15T23:51:50.664301
 - telemetry-four-events-locked — telemetry four events locked -- because: beacon schema matches session_start, wave_cleared, upgrade_chosen, session_end -- cite: [[client-side-telemetry-schema]] -- by: Product Manager -- from: [[2026-09-15-lets-deliver-next-increment]] -- at: 2026-09-15T23:52:26.952338
+- xp-progression-slice-defined — xp-progression-slice-defined -- because: PM scoped XP drops from shatter, 1-of-3 picker, currentBuild persistence only -- cite: [[memory]] -- by: Technical Engineering Manager -- from: [[2026-09-16-discuss-new-features]] -- at: 2026-09-16T00:49:32.860756
+- rex-plugin-evaluated-for-picker — rex-plugin-evaluated-for-picker -- because: Phaser community standard for modal UI, handles in-world + overlay + input -- cite: gamescene-ts -- by: Tech Researcher -- from: [[2026-09-16-discuss-new-features]] -- at: 2026-09-16T00:50:34.174224
+- currentbuild-schema-is-upgrade-local-only-in-indexeddb — currentBuild schema is Upgrade[] local-only in IndexedDB -- because: Security approved local-only, no new telemetry identifiers -- cite: [[2026-09-16-discuss-new-features]] -- by: Technical Engineering Manager -- from: [[2026-09-16-discuss-new-features]] -- at: 2026-09-17T15:30:46.460610

@@ -80,3 +80,7 @@ _None — frontier is empty._
 ---
 
 Back to [[Project]]
+
+## Links
+
+- [[Index]]

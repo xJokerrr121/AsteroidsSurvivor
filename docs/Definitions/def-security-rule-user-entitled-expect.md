@@ -13,14 +13,28 @@ title: 'Rule: What is the user entitled to expect about trust and privacy?'
 type: definition
 ---
 
-# Rule: What is the user entitled to expect about trust and privacy?
+# Security Rule: User Expectations for Trust and Privacy
 
-**Definition / Rule:**  
-The directive for What is the user entitled to expect about trust and privacy? follows the operator's preference: Nothing leaves without an explicit action: The default is private; sharing is always something the person deliberately does..
+This note records the binding rule for what users are entitled to expect regarding trust and privacy in the product.
 
-**Rationale:** Room consensus after reviewing the operator's choice.
+## Rule
 
-**Trade-offs / Key Considerations:**
-- **Advantages:** Aligned with the goals the operator stated., Clear direction for the build team.
-- **Drawbacks / Constraints:** Constrains the design to the selected option.
-- **Risks to watch:** Needs to be validated during the MVP build.
+**Default is private; sharing requires explicit user action.**  
+Nothing leaves the user's device without a deliberate, user-initiated action.
+
+## Rationale
+
+Room consensus after reviewing the operator's stated preference.
+
+## Trade-offs and Key Considerations
+
+| Aspect | Detail |
+|--------|--------|
+| **Advantages** | Aligned with the operator's stated goals; provides clear direction for the build team. |
+| **Drawbacks / Constraints** | Constrains design to the selected option. |
+| **Risks to watch** | Must be validated during the MVP build. |
+
+## Links
+
+- [[Project]]
+- [[Index]]

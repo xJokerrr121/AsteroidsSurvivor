@@ -13,14 +13,32 @@ title: 'Rule: Who sees this first, and how do we learn from them?'
 type: definition
 ---
 
-# Rule: Who sees this first, and how do we learn from them?
+# Delivery Rule: First Exposure & Learning
 
-**Definition / Rule:**  
-The directive for Who sees this first, and how do we learn from them? follows the operator's preference: A handful of people we already know: Show it to a small named group and sit with them while they use it..
+This note records the agreed rule for who gets the first look at the product and how the team learns from that exposure.
 
-**Rationale:** Room consensus after reviewing the operator's choice.
+## Rule
+**Who sees this first, and how do we learn from them?**  
+Follow the operator's preference: show the product to a small, named group of people we already know, and sit with them while they use it.
 
-**Trade-offs / Key Considerations:**
-- **Advantages:** Aligned with the goals the operator stated., Clear direction for the build team.
-- **Drawbacks / Constraints:** Constrains the design to the selected option.
-- **Risks to watch:** Needs to be validated during the MVP build.
+## Rationale
+Room consensus after reviewing the operator's choice.
+
+## Trade-offs & Key Considerations
+
+**Advantages**
+- Aligned with the goals the operator stated
+- Clear direction for the build team
+
+**Drawbacks / Constraints**
+- Constrains the design to the selected option
+
+**Risks to watch**
+- Needs to be validated during the MVP build
+
+## Links
+
+- [[Project]]
+- [[Index]]
+- [[2026-09-11-plan-first-increment-ordered]]
+- [[2026-09-11-plan-first-increment-ordered-minutes]]

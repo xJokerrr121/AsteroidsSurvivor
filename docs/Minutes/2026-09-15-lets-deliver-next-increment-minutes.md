@@ -81,3 +81,4 @@ The room aligned on shipping the wave-1 core loop as the third gate — a minima
 - [[Project]]
 - [[2026-09-15-lets-deliver-next-increment]]
 - [[9e074528-roadmap]]
+- [[Index]]

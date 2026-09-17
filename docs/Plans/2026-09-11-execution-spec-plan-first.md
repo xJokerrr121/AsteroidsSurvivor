@@ -121,3 +121,6 @@ flowchart TD
 
 - [[Project]]
 - Source meeting: `dcd07828`
+- [[Index]]
+- [[001-stack-choice]]
+- [[core-loop-flow]]

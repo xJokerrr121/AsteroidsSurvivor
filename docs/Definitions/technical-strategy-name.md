@@ -15,3 +15,9 @@ updated: '2026-09-11T12:48:56.575816'
 # technical-strategy for Name the runtime
 
 Expert recommendation: Sequence Name the runtime by risk: build the piece that can invalidate the design first, keep the rest behind flags.
+
+## Links
+
+- [[Project]]
+- [[Index]]
+- [[2026-09-11-name-runtime]]
