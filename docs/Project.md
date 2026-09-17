@@ -9,7 +9,7 @@ tags:
 - asteroids-survivor
 title: Asteroids Survivor
 type: project
-updated: '2026-09-17T16:50:54.165264'
+updated: '2026-09-17T16:51:06.516820'
 ---
 
 # Asteroids Survivor
