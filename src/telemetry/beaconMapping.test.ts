@@ -49,4 +49,17 @@ describe('initTelemetryMapping', () => {
 
     expect(sendEvent).toHaveBeenCalledWith('upgrade_chosen', { upgrade_id: 'fire-rate' });
   });
+
+  it('includes ship-relative world coordinates when the pick carries them', () => {
+    const sendEvent = vi.spyOn(beacon, 'sendEvent');
+    initTelemetryMapping({ ...EMPTY_STATE });
+
+    emit('upgrade_chosen', 'magnet-radius', { worldX: 480, worldY: 210 });
+
+    expect(sendEvent).toHaveBeenCalledWith('upgrade_chosen', {
+      upgrade_id: 'magnet-radius',
+      world_x: 480,
+      world_y: 210,
+    });
+  });
 });

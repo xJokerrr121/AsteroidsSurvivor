@@ -6,13 +6,20 @@
  */
 import { onStateChange, type GameState } from '../persistence/storage';
 import { sendEvent } from './beacon';
-import { off as offUpgradeChosen, on as onUpgradeChosen } from './upgradeHook';
+import {
+  off as offUpgradeChosen,
+  on as onUpgradeChosen,
+  type UpgradeChosenMeta,
+} from './upgradeHook';
 
 let previous: GameState | null = null;
 let unsubscribeState: (() => void) | null = null;
 
-function handleUpgradeChosen(upgradeId: string): void {
-  sendEvent('upgrade_chosen', { upgrade_id: upgradeId });
+function handleUpgradeChosen(upgradeId: string, meta?: UpgradeChosenMeta): void {
+  sendEvent('upgrade_chosen', {
+    upgrade_id: upgradeId,
+    ...(meta ? { world_x: meta.worldX, world_y: meta.worldY } : {}),
+  });
 }
 
 function handleStateChange(next: GameState): void {
