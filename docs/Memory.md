@@ -10,7 +10,7 @@ tags:
 - attendees
 title: Shared memory
 type: memory
-updated: '2026-09-17T15:30:46.517472'
+updated: '2026-09-17T22:42:12.579878'
 ---
 
 # Shared memory
@@ -28,3 +28,4 @@ Working facts sitting attendees currently hold. Not locks. Supersede a slug; do 
 - xp-progression-slice-defined — xp-progression-slice-defined -- because: PM scoped XP drops from shatter, 1-of-3 picker, currentBuild persistence only -- cite: [[memory]] -- by: Technical Engineering Manager -- from: [[2026-09-16-discuss-new-features]] -- at: 2026-09-16T00:49:32.860756
 - rex-plugin-evaluated-for-picker — rex-plugin-evaluated-for-picker -- because: Phaser community standard for modal UI, handles in-world + overlay + input -- cite: gamescene-ts -- by: Tech Researcher -- from: [[2026-09-16-discuss-new-features]] -- at: 2026-09-16T00:50:34.174224
 - currentbuild-schema-is-upgrade-local-only-in-indexeddb — currentBuild schema is Upgrade[] local-only in IndexedDB -- because: Security approved local-only, no new telemetry identifiers -- cite: [[2026-09-16-discuss-new-features]] -- by: Technical Engineering Manager -- from: [[2026-09-16-discuss-new-features]] -- at: 2026-09-17T15:30:46.460610
+- session-id-must-survive-browser-close-for-retention — session_id must survive browser close for retention probe -- because: upgrade-pick → next-session-start funnel breaks without stable identifier -- cite: [[7fd59e2c-roadmap]] -- by: Data Analyst -- from: [[2026-09-17-lead-engineer-builds-world]] -- at: 2026-09-17T22:42:12.512260

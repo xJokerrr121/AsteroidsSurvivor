@@ -9,7 +9,7 @@ tags:
 - asteroids-survivor
 title: Asteroids Survivor
 type: project
-updated: '2026-09-17T10:15:10.604899'
+updated: '2026-09-17T16:50:54.165264'
 ---
 
 # Asteroids Survivor
@@ -20,7 +20,7 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 
 - **Industry:** browser-based arcade game (Phaser/TypeScript)
 - **Stage:** planned
-- **Constraints:** Picker Scene must render to a second camera so world stays visible but dimmed (owner: Technical Engineering Manager)
+- **Constraints:** UX Designer says "picker-three-options-ux-locked fix=plan-specifies-three-distinct-icons-one-tap-no". That is a hard
 - **Priorities:** fast iteration, minimal infra, Day-1 ≥35% Day-7 ≥12% retention, measurable first increment
 - **Culture:** pragmatic, security-conscious, data-driven, execution-focused
 
@@ -45,6 +45,7 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 
 ## Findings
 
+- [[2026-09-17-define]] - Grill interview on Define: and WHY: ... or (1 settled decisions).
 - [[2026-09-15-define-term-noun-phrase]] - Grill interview on Define: term (noun phrase, max 8 words) or none (1 settled decisions).
 - [[2026-09-15-define-noun-phrase-8]] - Grill interview on Define: (noun phrase <=8 (1 settled decisions).
 - [[2026-09-11-name-runtime]] - Grill interview on Name the runtime (7 settled decisions).
@@ -52,6 +53,8 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 ## Meetings
 
 - [[2026-09-17-refine-discuss-new-features]] - Meeting note on Refine: Discuss new features for this increment,.
+- [[2026-09-17-lead-engineer-builds-world]] - Meeting note on Lead Engineer builds in-world picker scene with Rex plugin (pauses physics, +18.
+- [[2026-09-17-define]] - Meeting note on Define: and WHY: ... or.
 - [[2026-09-17-asteroids-survivor]] - Meeting note on Asteroids Survivor.
 - [[2026-09-16-refine-auto-document-project]] - Meeting note on Refine: Auto-document project.
 - [[2026-09-16-discuss-new-features]] - Meeting note on Discuss new features for this increment,.
@@ -68,6 +71,7 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 ## Minutes
 
 - [[2026-09-17-refine-discuss-new-features-minutes]] - Minutes for Refine: Discuss new features for this increment,.
+- [[2026-09-17-lead-engineer-builds-world-minutes]] - Minutes for Lead Engineer builds in-world picker scene with Rex plugin (pauses physics, +18.
 - [[2026-09-16-refine-auto-document-project-minutes]] - Minutes for Refine: Auto-document project.
 - [[2026-09-16-discuss-new-features-minutes]] - Minutes for Discuss new features for this increment,.
 - [[2026-09-16-auto-document-project-minutes]] - Minutes for Auto-document project.
@@ -78,6 +82,7 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 
 ## Interviews
 
+- [[2026-09-17-define-interview]] - Operator interview session on Define: and WHY: ... or.
 - [[2026-09-16-define-noun-phrase-8-interview]] - Operator interview session on Define: (noun phrase <=8 words) or.
 - [[2026-09-15-define-term-noun-phrase-interview]] - Operator interview session on Define: term (noun phrase, max 8 words) or none.
 - [[2026-09-15-define-noun-phrase-8-interview]] - Operator interview session on Define: (noun phrase <=8.
@@ -97,6 +102,7 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 
 ## Roadmaps
 
+- [[90e0f1be-roadmap]] - Strategic implementation roadmap for Lead Engineer builds in-world picker scene with Rex plugin (pauses physics, +18.
 - [[0f667ace-roadmap]] - Strategic implementation roadmap for Refine: Discuss new features for this increment,.
 - [[7fd59e2c-roadmap]] - Strategic implementation roadmap for Discuss new features for this increment,.
 - [[9e074528-roadmap]] - Strategic implementation roadmap for lets deliver the next increment.
@@ -110,6 +116,7 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 
 ## Plans
 
+- [[2026-09-17-execution-spec-world-picker]] - Execution Spec — In-World Picker Scene & Day-1 Retention Probe
 - [[2026-09-16-execution-spec-xp-skill]] - Execution Spec — XP & Skill Progression Slice (MVP Fantasy: Survivors in Vector Clothing)
 - [[2026-09-16-execution-spec-auto-document]] - Execution Spec — Auto-document project: Vault Index Creation
 - [[2026-09-16-auto-document-project]] - Auto-document project — Execution Spec
@@ -126,6 +133,7 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 ## Prompts
 
 - [[prompt-execution-execute-execution-spec-plan]] - Hand the "Execution Spec — Plan the first increment — ordered" plan to a coding agent for implementation.
+- [[prompt-execution-execute-execution-spec-world]] - Hand the "Execution Spec — In-World Picker Scene & Day-1 Retention Probe" plan to a coding agent for implementation.
 - [[prompt-execution-execute-execution-spec-xp]] - Hand the "Execution Spec — XP & Skill Progression Slice (MVP Fantasy: Survivors in Vector Clothing)" plan to a coding agent for implementation.
 - [[prompt-execution-execute-lets-deliver-next]] - Hand the "lets deliver the next increment" plan to a coding agent for implementation.
 

@@ -46,6 +46,14 @@ Checkable overflow from council rooms. Tick here; do not copy into a meeting's N
 - [ ] verify session_id persistence in storage.ts -- owner: Data Analyst -- from: [[2026-09-16-discuss-new-features]] -- why: needed for upgrade-pick → next-session-start metric, not this increment if already present
 - [ ] Confirm session_id persistence in storage.ts -- owner: Data Analyst -- from: [[2026-09-16-discuss-new-features]] -- why: needed for upgrade-pick → next-session-start metric
 - [ ] check storage.ts for persisted session_id -- owner: me -- from: [[2026-09-16-discuss-new-features]] -- why: unblocks upgrade-pick → next-session-start metric for Day-1 retention probe
+- [ ] verify storage.ts persists stable session_id across browser close or specify mint-in-startRun implementation -- owner: Data Analyst -- from: [[2026-09-17-lead-engineer-builds-world]] -- why: without stable session_id the upgrade-pick → next-session-start metric cannot be measured end-to-end
+- [ ] write gate 1-3 pass/fail criteria (session_id persistence, bundle budget, event-bus contract, schema freeze) -- owner: QA Engineer -- from: [[2026-09-17-lead-engineer-builds-world]] -- why: scaffold ships tomorrow per roadmap; verification must be executable not aspirational
+- [ ] Harden CI with lint/typecheck/test gates and Lighthouse budgets -- owner: DevOps Engineer -- from: [[2026-09-17-lead-engineer-builds-world]] -- why: not this increment; probe ships on cheap pipeline first.
+- [ ] Validate picker on mobile viewport -- owner: UX/UI Designer -- from: [[2026-09-17-lead-engineer-builds-world]] -- why: depends on Lead Engineer delivering Rex picker scene first.
+- [ ] write gate 1-3 pass/fail criteria (session_id persistence, bundle budget, event-bus contract, schema freeze) -- owner: QA Engineer -- from: [[2026-09-17-lead-engineer-builds-world]] -- why: not this increment
+- [ ] Define pass/fail criteria for each gate in repo -- owner: QA Engineer -- from: [[2026-09-17-lead-engineer-builds-world]] -- why: gates currently ship on unverifiable claims
+- [ ] Codify QA pass/fail criteria (bundle budget, event-bus contract, physics-regression test for pause/resume) into PR checklist -- owner: QA Engineer -- from: [[2026-09-17-lead-engineer-builds-world]] -- why: gates must not ship green on unverifiable claims; this is Day-1 work, not a later increment
+- [ ] Verify session_id persistence proof lands in PR today -- owner: Data Analyst -- from: [[2026-09-17-lead-engineer-builds-world]] -- why: blocks beacon mapping and retention funnel
 ## Links
 
 - [[Project]]

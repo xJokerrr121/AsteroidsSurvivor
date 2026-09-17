@@ -7,7 +7,7 @@ tags:
 - moc
 title: Index
 type: index
-updated: '2026-09-17T10:15:10.788421'
+updated: '2026-09-17T16:50:54.391883'
 ---
 
 # Index
@@ -35,6 +35,7 @@ updated: '2026-09-17T10:15:10.788421'
 - [[2026-09-11-name-runtime]] — Grill interview on Name the runtime (7 settled decisions).
 - [[2026-09-15-define-noun-phrase-8]] — Grill interview on Define: (noun phrase <=8 (1 settled decisions).
 - [[2026-09-15-define-term-noun-phrase]] — Grill interview on Define: term (noun phrase, max 8 words) or none (1 settled decisions).
+- [[2026-09-17-define]] — Grill interview on Define: and WHY: ... or (1 settled decisions).
 
 ## Meetings
 
@@ -47,6 +48,7 @@ updated: '2026-09-17T10:15:10.788421'
 - [[2026-09-16-discuss-new-features]] — Meeting note on Discuss new features for this increment,.
 - [[2026-09-16-refine-auto-document-project]] — Meeting note on Refine: Auto-document project.
 - [[2026-09-17-asteroids-survivor]] — Meeting note on Asteroids Survivor.
+- [[2026-09-17-lead-engineer-builds-world]] — Meeting note on Lead Engineer builds in-world picker scene with Rex plugin (pauses physics, +18.
 - [[2026-09-17-refine-discuss-new-features]] — Meeting note on Refine: Discuss new features for this increment,.
 
 ## Minutes
@@ -58,6 +60,7 @@ updated: '2026-09-17T10:15:10.788421'
 - [[2026-09-16-auto-document-project-minutes]] — Minutes for Auto-document project.
 - [[2026-09-16-discuss-new-features-minutes]] — Minutes for Discuss new features for this increment,.
 - [[2026-09-16-refine-auto-document-project-minutes]] — Minutes for Refine: Auto-document project.
+- [[2026-09-17-lead-engineer-builds-world-minutes]] — Minutes for Lead Engineer builds in-world picker scene with Rex plugin (pauses physics, +18.
 - [[2026-09-17-refine-discuss-new-features-minutes]] — Minutes for Refine: Discuss new features for this increment,.
 
 ## Interviews
@@ -66,6 +69,7 @@ updated: '2026-09-17T10:15:10.788421'
 - [[2026-09-15-define-noun-phrase-8-interview]] — Operator interview session on Define: (noun phrase <=8.
 - [[2026-09-15-define-term-noun-phrase-interview]] — Operator interview session on Define: term (noun phrase, max 8 words) or none.
 - [[2026-09-16-define-noun-phrase-8-interview]] — Operator interview session on Define: (noun phrase <=8 words) or.
+- [[2026-09-17-define-interview]] — Operator interview session on Define: and WHY: ... or.
 
 ## Research
 
@@ -76,6 +80,7 @@ updated: '2026-09-17T10:15:10.788421'
 - [[0f667ace-roadmap]] — Strategic implementation roadmap for Refine: Discuss new features for this increment,.
 - [[66c0c184-roadmap]] — Strategic implementation roadmap for todo integrations.
 - [[7fd59e2c-roadmap]] — Strategic implementation roadmap for Discuss new features for this increment,.
+- [[90e0f1be-roadmap]] — Strategic implementation roadmap for Lead Engineer builds in-world picker scene with Rex plugin (pauses physics, +18.
 - [[9e074528-roadmap]] — Strategic implementation roadmap for lets deliver the next increment.
 - [[dcd07828-roadmap]] — Strategic implementation roadmap for Plan the first increment — ordered.
 - [[f9bddde9-roadmap]] — Strategic implementation roadmap for Refine: Plan the first increment — ordered.
@@ -96,10 +101,12 @@ updated: '2026-09-17T10:15:10.788421'
 - [[2026-09-15-todo-integrations-execution]] — todo integrations — Execution Spec
 - [[2026-09-16-execution-spec-auto-document]] — Execution Spec — Auto-document project: Vault Index Creation
 - [[2026-09-16-execution-spec-xp-skill]] — Execution Spec — XP & Skill Progression Slice (MVP Fantasy: Survivors in Vector Clothing)
+- [[2026-09-17-execution-spec-world-picker]] — Execution Spec — In-World Picker Scene & Day-1 Retention Probe
 
 ## Prompts
 
 - [[prompt-execution-execute-execution-spec-plan]] — Hand the "Execution Spec — Plan the first increment — ordered" plan to a coding agent for implementation.
+- [[prompt-execution-execute-execution-spec-world]] — Hand the "Execution Spec — In-World Picker Scene & Day-1 Retention Probe" plan to a coding agent for implementation.
 - [[prompt-execution-execute-execution-spec-xp]] — Hand the "Execution Spec — XP & Skill Progression Slice (MVP Fantasy: Survivors in Vector Clothing)" plan to a coding agent for implementation.
 - [[prompt-execution-execute-lets-deliver-next]] — Hand the "lets deliver the next increment" plan to a coding agent for implementation.
 
