@@ -9,7 +9,7 @@ tags:
 - asteroids-survivor
 title: Asteroids Survivor
 type: project
-updated: '2026-09-17T16:51:06.516820'
+updated: '2026-09-17T16:51:50.340979'
 ---
 
 # Asteroids Survivor
@@ -20,7 +20,7 @@ Classic Asteroids arcade game, with vampire survivor mechanics
 
 - **Industry:** browser-based arcade game (Phaser/TypeScript)
 - **Stage:** planned
-- **Constraints:** UX Designer says "picker-three-options-ux-locked fix=plan-specifies-three-distinct-icons-one-tap-no". That is a hard
+- **Constraints:** session_id persistence check is gate before beacon mapping lands
 - **Priorities:** fast iteration, minimal infra, Day-1 ≥35% Day-7 ≥12% retention, measurable first increment
 - **Culture:** pragmatic, security-conscious, data-driven, execution-focused
 
