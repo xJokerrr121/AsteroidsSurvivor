@@ -7,6 +7,11 @@
  * feeding the Day-1/Day-7 retention probe).
  * Transport is `navigator.sendBeacon()` only: zero backend, fire-and-forget,
  * survives the tab being closed mid-run.
+ *
+ * `session_id` defaults to a per-tab random id but `setSessionId()` lets
+ * bootstrap override it with a persisted one (2026-09-16 XP & skill plan —
+ * see `docs/security/2026-09-16-xp-skill-review.md` for the threat-model
+ * trade-off this makes).
  */
 
 /** Closed event set for the wave-1 retention probe. */
@@ -50,11 +55,16 @@ function newSessionId(): string {
   return `s-${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`;
 }
 
-const sessionId = newSessionId();
+let sessionId = newSessionId();
 
-/** The id attached to every event from this tab. Not persisted, not a user id. */
+/** The id attached to every event. Not a name/email/account id. */
 export function getSessionId(): string {
   return sessionId;
+}
+
+/** Overrides the default per-tab id — call once at bootstrap before any event fires. */
+export function setSessionId(id: string): void {
+  sessionId = id;
 }
 
 /** Builds the frozen-schema payload without sending it. Exported for tests. */

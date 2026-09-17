@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://xjokerrr121.github.io/AsteroidsSurvivor/telemetry-schema.json",
   "title": "Asteroids Survivor telemetry event",
-  "description": "Updated 2026-09-16 for the wave-1 core loop increment (docs/Plans/2026-09-15-lets-deliver-next-increment.md). Supersedes the 2026-09-11 freeze. Every client event sent via navigator.sendBeacon() to VITE_TELEMETRY_ENDPOINT MUST validate against this schema. No changes after 2026-09-16 without a new plan.",
+  "description": "Updated 2026-09-16 for the XP & skill progression slice (docs/Plans/2026-09-16-execution-spec-xp-skill.md), extending the same-day wave-1 core loop update (docs/Plans/2026-09-15-lets-deliver-next-increment.md). Same four event names; adds world_x/world_y to upgrade_chosen and makes session_id persist across browser close (see docs/security/2026-09-16-xp-skill-review.md). Every client event sent via navigator.sendBeacon() to VITE_TELEMETRY_ENDPOINT MUST validate against this schema. No changes after 2026-09-16 without a new plan.",
   "x-frozen-on": "2026-09-16",
   "x-transport": "navigator.sendBeacon()",
   "x-endpoint-env": "VITE_TELEMETRY_ENDPOINT",
@@ -16,7 +16,7 @@
   "properties": {
     "session_id": {
       "type": "string",
-      "description": "Opaque per-tab random id (UUID v4). Not a user id, not persisted across runs.",
+      "description": "Opaque random id (UUID v4). Persisted in IndexedDB and stable across browser close so the upgrade-pick to next-session-start funnel is measurable. Not a name, email or account id.",
       "format": "uuid"
     },
     "event_name": {
@@ -47,6 +47,14 @@
         "upgrade_id": {
           "type": "string",
           "description": "upgrade_chosen: id of the upgrade the player claimed."
+        },
+        "world_x": {
+          "type": "number",
+          "description": "upgrade_chosen: ship x position (play-field coords) at pick time."
+        },
+        "world_y": {
+          "type": "number",
+          "description": "upgrade_chosen: ship y position (play-field coords) at pick time."
         },
         "duration_ms": {
           "type": "number",

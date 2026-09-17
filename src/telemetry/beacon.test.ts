@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { ALLOWED_ENDPOINT_HOSTS, buildEvent, getSessionId, sendEvent } from './beacon';
+import { ALLOWED_ENDPOINT_HOSTS, buildEvent, getSessionId, sendEvent, setSessionId } from './beacon';
 
 const ENDPOINT = 'https://stats.plausible.io/api/event';
 
@@ -63,5 +63,17 @@ describe('sendEvent', () => {
 
   it('keeps the allowlist aligned with the CSP connect-src', () => {
     expect([...ALLOWED_ENDPOINT_HOSTS]).toEqual(['plausible.io', 'umami.is']);
+  });
+});
+
+describe('setSessionId', () => {
+  it('overrides the id every subsequent event carries', () => {
+    const original = getSessionId();
+    setSessionId('persisted-uuid');
+
+    expect(getSessionId()).toBe('persisted-uuid');
+    expect(buildEvent('session_start').session_id).toBe('persisted-uuid');
+
+    setSessionId(original);
   });
 });

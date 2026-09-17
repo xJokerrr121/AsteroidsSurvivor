@@ -10,6 +10,16 @@ const STORE = 'game-state';
 
 /** Keys written by the MVP increment. Documented in `docs/ux/core-loop-flow.md`. */
 export const STATE_KEY = 'run-state';
+/** Keys added by the XP & skill progression slice, `docs/Plans/2026-09-16-execution-spec-xp-skill.md`. */
+export const SESSION_ID_KEY = 'session-id';
+export const CURRENT_BUILD_KEY = 'current-build';
+
+/** A picked upgrade as stored in `currentBuild`. Data only — no effect logic (see `src/core/upgrades.ts`). */
+export interface Upgrade {
+  id: string;
+  name: string;
+  icon: string;
+}
 
 export interface GameState {
   /** Best survival time in milliseconds. */
@@ -112,4 +122,66 @@ export async function recordWaveClear(previous: GameState, waveNumber: number): 
   };
   await saveState(next);
   return next;
+}
+
+async function readKey<T>(key: string): Promise<T | undefined> {
+  const db = await openDb();
+  const value = await new Promise<T | undefined>((resolve, reject) => {
+    const request = db.transaction(STORE, 'readonly').objectStore(STORE).get(key);
+    request.onsuccess = () => resolve(request.result as T | undefined);
+    request.onerror = () => reject(request.error);
+  });
+  db.close();
+  return value;
+}
+
+async function writeKey<T>(key: string, value: T): Promise<void> {
+  const db = await openDb();
+  await new Promise<void>((resolve, reject) => {
+    const tx = db.transaction(STORE, 'readwrite');
+    tx.objectStore(STORE).put(value, key);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+  db.close();
+}
+
+/**
+ * Reads the persisted `session_id`, minting and writing a UUID v4 once if
+ * none exists yet. Stable across browser close — see the 2026-09-16 plan's
+ * `session_id`-persistence lock (supersedes the per-tab-only session id noted
+ * in `docs/security/threat-model-indexeddb-beacon.md` T4; countersignature
+ * outstanding, see `docs/security/2026-09-16-xp-skill-review.md`).
+ */
+export async function loadOrCreateSessionId(): Promise<string> {
+  try {
+    const existing = await readKey<string>(SESSION_ID_KEY);
+    if (existing) return existing;
+    const minted = crypto.randomUUID();
+    await writeKey(SESSION_ID_KEY, minted);
+    return minted;
+  } catch {
+    return crypto.randomUUID();
+  }
+}
+
+/** Reads the current run's picked upgrades. Empty on a first visit or any failure. */
+export async function loadCurrentBuild(): Promise<Upgrade[]> {
+  try {
+    return (await readKey<Upgrade[]>(CURRENT_BUILD_KEY)) ?? [];
+  } catch {
+    return [];
+  }
+}
+
+/** Appends a picked upgrade to the current run's build and persists it. */
+export async function addToCurrentBuild(upgrade: Upgrade): Promise<Upgrade[]> {
+  const next = [...(await loadCurrentBuild()), upgrade];
+  await writeKey(CURRENT_BUILD_KEY, next);
+  return next;
+}
+
+/** Wipes `currentBuild` — called on `startRun()`; picks belong to one run only. */
+export async function resetCurrentBuild(): Promise<void> {
+  await writeKey(CURRENT_BUILD_KEY, [] as Upgrade[]);
 }

@@ -1,5 +1,16 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { EMPTY_STATE, loadState, onStateChange, recordRun, recordWaveClear, saveState } from './storage';
+import {
+  addToCurrentBuild,
+  EMPTY_STATE,
+  loadCurrentBuild,
+  loadOrCreateSessionId,
+  loadState,
+  onStateChange,
+  recordRun,
+  recordWaveClear,
+  resetCurrentBuild,
+  saveState,
+} from './storage';
 
 beforeEach(async () => {
   await saveState({ ...EMPTY_STATE });
@@ -44,5 +55,39 @@ describe('game state persistence', () => {
 
     expect(handler).toHaveBeenCalledWith(next);
     unsubscribe();
+  });
+});
+
+describe('session_id persistence', () => {
+  it('mints a UUID once and returns the same one on every later call', async () => {
+    const first = await loadOrCreateSessionId();
+    const second = await loadOrCreateSessionId();
+
+    expect(first).toMatch(/^[0-9a-f-]{36}$/i);
+    expect(second).toBe(first);
+  });
+});
+
+describe('currentBuild', () => {
+  beforeEach(async () => {
+    await resetCurrentBuild();
+  });
+
+  it('starts empty', async () => {
+    expect(await loadCurrentBuild()).toEqual([]);
+  });
+
+  it('appends picks in order for the current run', async () => {
+    await addToCurrentBuild({ id: 'fire-rate', name: 'Faster guns', icon: 'fire-rate' });
+    const build = await addToCurrentBuild({ id: 'damage', name: 'Heavier rounds', icon: 'damage' });
+
+    expect(build.map((u) => u.id)).toEqual(['fire-rate', 'damage']);
+  });
+
+  it('is wiped by resetCurrentBuild', async () => {
+    await addToCurrentBuild({ id: 'magnet-radius', name: 'Wider magnet', icon: 'magnet-radius' });
+    await resetCurrentBuild();
+
+    expect(await loadCurrentBuild()).toEqual([]);
   });
 });
